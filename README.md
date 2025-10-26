@@ -9,13 +9,15 @@
 
   > Section: S1
 
-  > Team ID: 
+  > Team ID: 19
+2. 241CS161, U Venkatesh, utkoorvenkatesh.241cs161@nitk.edu.in, 9182974835
+3. 241CS163, Vikash Patel, vikashpatel.241cs163@nitk.edu.in, 6267521706
 
-  > Member-1: Name, Roll No., email
+  > Member-1: Poluri Sai Jishnu, 241CS140, saijishnup.241cs140@nitk.edu.in
 
-  > member-2: Name, Roll No., email
+  > member-2: Utkoor Venkatesh, 241CS161, utkoorvenkatesh.241cs161@nitk.edu.in
 
-  > Member-3: Name, Roll No., email
+  > Member-3: Vikash Patel, 241CS163,  vikashpatel.241cs163@nitk.edu.in
 </details>
 
 <!-- Second Section -->
