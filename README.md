@@ -23,9 +23,10 @@
 <details>
   <summary>Detail</summary>
   
-  >Core Background
->• Natural disasters like floods, cyclones, earthquakes, and tsunamis cause major damage.
->• Early warning helps to reduce loss of life and property.
+  >
+> Core Background
+> • Natural disasters like floods, cyclones, earthquakes, and tsunamis cause major damage.
+> • Early warning helps to reduce loss of life and property.
 >• This project uses digital logic to detect possible disasters automatically.
 >• It works on simple sensor-like binary inputs representing environment factors.
 >Project Working
