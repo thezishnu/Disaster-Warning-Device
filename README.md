@@ -24,19 +24,19 @@
   <summary>Detail</summary>
   
   >
-> Core Background:<br>
+> **Core Background:**<br>
 > • Natural disasters like floods, cyclones, earthquakes, and tsunamis cause major damage.<br>
 > • Early warning helps to reduce loss of life and property.<br>
 >• This project uses digital logic to detect possible disasters automatically.<br>
 >• It works on simple sensor-like binary inputs representing environment factors.<br>
-> Project Working:<br>
+> **Project Working:**<br>
 >• The system takes 8-bit input (2 bits each for Rainfall, Seismic, Wind, and Sea Level).<br>
 >• Each 2-bit code shows the level: Low, Medium, High, or Very High.<br>
 >• Comparators, AND/OR/XOR gates, and decoders process these inputs.<br>
 >• Logic equations decide which disaster condition matches the given inputs.<br>
 >• A priority encoder and multiplexer ensure only one LED glows at a time.<br>
 >• The output is a glowing LED showing one disaster: Flood, Cyclone, Earthquake, or Tsunami.<br>
-> Applications & Educational Value:<br>
+> **Applications & Educational Value:**<br>
 >• The LEDs act as warning indicators for different conditions.<br>
 >• The design is simple, low-cost, and based on basic logic ICs.<br>
 >• It can be used in educational labs to learn digital system design concepts.<br>
