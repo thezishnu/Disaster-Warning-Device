@@ -47,7 +47,7 @@
 <details>
   <summary>Detail</summary>
   
-  ![block diagram]([https://github.com/user-attachments/assets/588c9f81-997e-431b-8da3-0b40f3713d4e](https://github.com/thezishnu/S1-T19-25-26/blob/main/Snapshots/block_diagram.png))
+  ![block diagram]([https://github.com/user-attachments/assets/588c9f81-997e-431b-8da3-0b40f3713d4e](https://github.com/thezishnu/S1-T19-25-26/blob/main/Snapshots/block_diagram.png?raw=true))
 
 </details>
 
