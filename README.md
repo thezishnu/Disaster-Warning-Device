@@ -288,7 +288,8 @@ module tb_disaster;
         #10 $finish;
     end
 endmodule
-
+```
+<details>
 ## References
 <details>
   <summary>Detail</summary>
@@ -297,5 +298,4 @@ endmodule
    [(https://www.bbc.com/news)](https://www.bbc.com/news/world-asia-india-65793257)
    
 </details>
-
 
