@@ -83,7 +83,6 @@ Finally, the LED logic combines decoder outputs and raw detection signals to dri
 
 <!-- Fifth Section -->
 ## Verilog Code
-## Verilog Code
 <details>
   <summary>Detail</summary>
 
