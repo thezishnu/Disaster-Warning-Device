@@ -1,52 +1,27 @@
-// ===========================================================
-// Testbench for Disaster Warning Device
-// ===========================================================
 `timescale 1ns/1ps
-module tb_disaster;
-    reg r1, r0, s1, s0, w1, w0, l1, l0, mode;
-    wire flood_led, cyclone_led, earthquake_led, tsunami_led;
-
-    // Change this line to test any version:
-    disaster_behavioral uut (
-        .r1(r1), .r0(r0), .s1(s1), .s0(s0),
-        .w1(w1), .w0(w0), .l1(l1), .l0(l0),
-        .mode(mode),
-        .flood_led(flood_led),
-        .cyclone_led(cyclone_led),
-        .earthquake_led(earthquake_led),
-        .tsunami_led(tsunami_led)
-    );
-
+module tb_disaster_all;
+    reg  r1, r0, s1, s0, w1, w0, l1, l0, mode;
+    wire flood_led_g, cyclone_led_g, earthquake_led_g, tsunami_led_g;
+    wire flood_led_d, cyclone_led_d, earthquake_led_d, tsunami_led_d;
+    wire flood_led_b, cyclone_led_b, earthquake_led_b, tsunami_led_b;
+    disaster_gate       U_GATE (.r1(r1), .r0(r0), .s1(s1), .s0(s0), .w1(w1), .w0(w0), .l1(l1), .l0(l0), .mode(mode),
+                                .flood_led(flood_led_g), .cyclone_led(cyclone_led_g), .earthquake_led(earthquake_led_g), .tsunami_led(tsunami_led_g));
+    disaster_dataflow   U_DATA (.r1(r1), .r0(r0), .s1(s1), .s0(s0), .w1(w1), .w0(w0), .l1(l1), .l0(l0), .mode(mode),
+                                .flood_led(flood_led_d), .cyclone_led(cyclone_led_d), .earthquake_led(earthquake_led_d), .tsunami_led(tsunami_led_d));
+    disaster_behavioral U_BEH  (.r1(r1), .r0(r0), .s1(s1), .s0(s0), .w1(w1), .w0(w0), .l1(l1), .l0(l0), .mode(mode),
+                                .flood_led(flood_led_b), .cyclone_led(cyclone_led_b), .earthquake_led(earthquake_led_b), .tsunami_led(tsunami_led_b));
     initial begin
-        $dumpfile("disaster.vcd");
-        $dumpvars(0, tb_disaster);
-
-        // Header
-        $display("time\tmode\tr1r0 w1w0 s1s0 l1l0 | F C E T");
-
-        // Initialize all inputs
-        mode = 0;
-        {r1,r0,s1,s0,w1,w0,l1,l0} = 8'b00000000;
-
-        // Test unique disaster mode (mode=0)
-        repeat(8) begin
-            {r1,r0,s1,s0,w1,w0,l1,l0} = $random;
-            #5;
-            $display("%0t\t%b\t%b%b %b%b %b%b %b%b | %b %b %b %b",
-                $time, mode, r1,r0, w1,w0, s1,s0, l1,l0,
-                flood_led, cyclone_led, earthquake_led, tsunami_led);
+        $dumpfile("disaster_all.vcd");
+        $dumpvars(0, tb_disaster_all);
+    end
+    integer i;
+    initial begin
+        for (mode = 0; mode <= 1; mode = mode + 1) begin
+            for (i = 0; i < 256; i = i + 1) begin
+                {r1,r0,s1,s0,w1,w0,l1,l0} = i;
+                #1;
+            end
         end
-
-        // Test multi-disaster mode (mode=1)
-        mode = 1;
-        repeat(8) begin
-            {r1,r0,s1,s0,w1,w0,l1,l0} = $random;
-            #5;
-            $display("%0t\t%b\t%b%b %b%b %b%b %b%b | %b %b %b %b",
-                $time, mode, r1,r0, w1,w0, s1,s0, l1,l0,
-                flood_led, cyclone_led, earthquake_led, tsunami_led);
-        end
-
-        #10 $finish;
+        #5 $finish;
     end
 endmodule
