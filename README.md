@@ -43,7 +43,7 @@ A lightweight digital system that detects Flood, Cyclone, Earthquake, and Tsunam
 <details>
   <summary>Detail</summary>
   
-  ![block diagram]([https://github.com/user-attachments/assets/588c9f81-997e-431b-8da3-0b40f3713d4e](https://github.com/thezishnu/S1-T19-25-26/blob/main/Snapshots/block_diagram.png?raw=true))
+  ![block diagram](Snapshots/block_diagram.png))
 
 </details>
 
@@ -52,60 +52,67 @@ A lightweight digital system that detects Flood, Cyclone, Earthquake, and Tsunam
 <details>
   <summary>Detail</summary>
 
-  The **Disaster Warning Device** works by analyzing environmental conditions through simple 2-bit digital inputs. These inputs represent the intensity levels of rainfall, wind speed, seismic activity, and sea level. Each 2-bit pair shows how strong that factor is —  
-  `00` for Low, `01` for Medium, `10` for High, and `11` for Very High.
+  The **Disaster Warning Device** operates by analysing environmental conditions using simple 2-bit digital inputs. These inputs represent intensity levels of four environmental parameters — rainfall, wind speed, seismic activity, and sea level. Each 2-bit pair indicates the level:  
+  `00` = Low, `01` = Medium, `10` = High, `11` = Very High.
 
   **Working Steps:**
 
   1. **Input Stage:**  
-     The system takes a total of **8 input bits** — 2 bits each from four environmental parameters:  
-     - Rainfall (`r1r0`)  
-     - Wind (`w1w0`)  
-     - Seismic Activity (`s1s0`)  
-     - Sea Level (`l1l0`)  
+     The system accepts **8 input bits** grouped as 2-bit pairs for each parameter:  
+     - Rainfall → `r1 r0`  
+     - Wind → `w1 w0`  
+     - Seismic Activity → `s1 s0`  
+     - Sea Level → `l1 l0`  
+
+     These pairs act like simple digital sensor readings describing environmental intensity.
 
   2. **Condition Evaluation:**  
-     Each disaster has a predefined logical condition made using simple **AND** and **OR** gates.  
-     - **Flood:** Detected when rainfall is high along with either strong wind, high sea level, or continuous rain.  
-     - **Cyclone:** Detected when wind is strong and combined with either high rainfall or high sea level.  
-     - **Earthquake:** Detected when the seismic reading is not low (i.e., any of the bits `s1` or `s0` is 1).  
-     - **Tsunami:** Detected when both seismic activity and sea level are high.  
+     Each disaster is identified by a specific logical expression built from basic gates (AND, OR):  
+     - **Flood:** `r1 & (w1 | l1 | r0)` — high rainfall together with strong wind, high sea level, or continuous rain.  
+     - **Cyclone:** `w1 & (w0 | l1 | r1)` — strong wind combined with either high sea level or heavy rainfall.  
+     - **Earthquake:** `s1 | s0` — any non-zero seismic reading signals earthquake activity.  
+     - **Tsunami:** `s1 & l1` — high seismic activity together with high sea level.
 
   3. **Detection Stage:**  
-     Each of the four logic blocks produces a binary output — 1 if the condition for that disaster is satisfied, and 0 otherwise. These four outputs represent the initial detection signals for Flood, Cyclone, Earthquake, and Tsunami.
+     Each condition block outputs a binary signal: `1` if that disaster condition is met, otherwise `0`.  
+     These four signals are the raw detection outputs for Flood, Cyclone, Earthquake, and Tsunami.
 
-  4. **Priority Encoding:**  
-     The outputs from the disaster detectors are fed into a **priority encoder**.  
-     The encoder assigns a 2-bit binary code to the active disasters depending on their priority:  
-     - Flood → `00` (Highest priority)  
-     - Cyclone → `01`  
+  4. **Priority Encoding (Updated Order):**  
+     The detection signals feed a **priority encoder** that assigns a 2-bit code according to disaster importance. **Tsunami has the highest priority** and Flood the lowest. The mapping is:  
+     - Tsunami → `11` (Highest priority)  
      - Earthquake → `10`  
-     - Tsunami → `11` (Lowest priority)
+     - Cyclone → `01`  
+     - Flood → `00` (Lowest priority)  
+
+     This means when multiple disasters are active, the encoder outputs the code of the highest-priority disaster (Tsunami first, Flood last).
 
   5. **Decoding and Display:**  
-     The binary output from the encoder goes into a **decoder**, which converts it into a one-hot output. This one-hot signal activates a single LED corresponding to the detected disaster.
+     The 2-bit encoder output goes to a **decoder** that produces a one-hot signal. The one-hot output drives the corresponding LED so a single LED lights up (in unique mode) indicating the prioritized disaster.
 
   6. **Mode Selection:**  
-     The circuit includes a **mode switch** to change the way outputs are displayed:  
-     - When **Mode = 0**, the system works in **Unique Disaster Mode** — only one LED (based on priority) glows.  
-     - When **Mode = 1**, it works in **Multi-Disaster Mode** — all LEDs for active disasters glow together.
+     The device has a **mode input** that controls how outputs are shown:  
+     - **Mode = 0 (Unique Disaster Mode):** Only the highest-priority disaster LED (from the encoder/decoder) lights.  
+     - **Mode = 1 (Multi-Disaster Mode):** All LEDs corresponding to the active detection signals light simultaneously (no priority suppression).
 
   7. **Final Output:**  
-     The glowing LED(s) on the output panel indicate which disaster or combination of disasters are currently detected by the system.  
-     This output helps in quick identification and acts as a visual warning.
+     The LED panel provides a clear visual warning: one LED for the prioritized disaster in unique mode, or multiple LEDs when several disasters are detected in multi mode. This makes it easy to identify and test disaster conditions quickly.
 
-  **Summary:**  
-  In short, the device reads sensor inputs, processes them through logic gates, uses a priority encoder-decoder pair to identify the dominant disaster, and displays the result using LEDs. The design demonstrates how complex decision-making can be achieved using only digital logic components without any microcontroller or programming.
-  
+  **Note:**  
+  - Priority order is chosen so the most critical—Tsunami—is shown first if it co-occurs with other conditions.  
+  - The logic expressions are intentionally simple to allow implementation using basic gates and comparators, making the design hardware-friendly and suitable for learning labs.  
+  - The earthquake condition uses `s1 | s0` to detect any non-zero seismic reading (i.e., medium or higher), as requested.  
+  - Mode selection gives flexibility: use unique mode for a single clear alert, or multi mode for full situational awareness.
+
 </details>
+
 
 
 <!-- Fourth Section -->
 ## Logisim Circuit Diagram
 <details>
   <summary>Detail</summary>
-
-  > Update a neat logisim circuit diagram
+  
+  ![Circuit](Logisim/logisim_circuit.png)
 </details>
 
 <!-- Fifth Section -->
