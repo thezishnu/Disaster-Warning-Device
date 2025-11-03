@@ -2,7 +2,11 @@
 <project source="2.7.1" version="1.0">
 This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
 <lib desc="#Wiring" name="0"/>
-  <lib desc="#Gates" name="1"/>
+  <lib desc="#Gates" name="1">
+    <tool name="AND Gate">
+      <a name="inputs" val="2"/>
+    </tool>
+  </lib>
   <lib desc="#Plexers" name="2"/>
   <lib desc="#Arithmetic" name="3"/>
   <lib desc="#Memory" name="4">
@@ -168,93 +172,63 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(820,220)" to="(960,220)"/>
     <wire from="(390,560)" to="(520,560)"/>
     <wire from="(30,730)" to="(100,730)"/>
-    <comp loc="(550,540)" name="earthquake"/>
-    <comp lib="6" loc="(807,273)" name="Text">
-      <a name="text" val="Priority Arrangement"/>
-      <a name="font" val="SansSerif bolditalic 16"/>
+    <comp lib="6" loc="(64,793)" name="Text">
+      <a name="text" val="0"/>
+      <a name="font" val="Yu Gothic Light bold 16"/>
     </comp>
-    <comp lib="6" loc="(499,754)" name="Text">
-      <a name="text" val="IMPACT"/>
-      <a name="font" val="Segoe UI Variable bold 20"/>
+    <comp lib="6" loc="(505,422)" name="Text">
+      <a name="text" val="Cyclone Condition"/>
+      <a name="font" val="Yu Gothic UI Semibold plain 20"/>
+    </comp>
+    <comp lib="6" loc="(388,130)" name="Text">
+      <a name="text" val="Sea Level"/>
+      <a name="font" val="Yu Gothic UI Semibold plain 20"/>
+    </comp>
+    <comp loc="(1150,540)" name="mode"/>
+    <comp lib="6" loc="(186,793)" name="Text">
+      <a name="text" val="UNIQUE DISASTER"/>
+      <a name="font" val="Yu Gothic Light bold 16"/>
+    </comp>
+    <comp lib="2" loc="(960,220)" name="Decoder">
+      <a name="facing" val="south"/>
+      <a name="select" val="2"/>
+    </comp>
+    <comp lib="6" loc="(500,885)" name="Text">
+      <a name="text" val="Very High"/>
+      <a name="font" val="Yu Gothic Light bold 16"/>
+    </comp>
+    <comp lib="6" loc="(152,130)" name="Text">
+      <a name="text" val="Seismic"/>
+      <a name="font" val="Yu Gothic UI Semibold plain 20"/>
+    </comp>
+    <comp lib="6" loc="(268,832)" name="Text"/>
+    <comp lib="1" loc="(710,310)" name="NOT Gate">
+      <a name="facing" val="south"/>
+    </comp>
+    <comp lib="6" loc="(502,787)" name="Text">
+      <a name="text" val="Low/None"/>
+      <a name="font" val="Yu Gothic Light bold 16"/>
     </comp>
     <comp lib="6" loc="(494,853)" name="Text">
       <a name="text" val="High"/>
       <a name="font" val="Yu Gothic Light bold 16"/>
     </comp>
-    <comp lib="6" loc="(270,129)" name="Text">
-      <a name="text" val="Wind"/>
-      <a name="font" val="Yu Gothic UI Semibold plain 20"/>
-    </comp>
-    <comp lib="6" loc="(722,76)" name="Text">
-      <a name="text" val="DISASTER WARNING DEVICE (S1-T19)"/>
-      <a name="font" val="Berlin Sans FB plain 28"/>
-    </comp>
-    <comp lib="6" loc="(1127,334)" name="Text">
-      <a name="text" val="Mode Response"/>
-      <a name="font" val="SansSerif bolditalic 16"/>
-    </comp>
-    <comp lib="5" loc="(1210,640)" name="LED">
-      <a name="label" val="TSUNAMI"/>
-      <a name="labelloc" val="east"/>
-      <a name="labelfont" val="Lucida Fax bold 24"/>
-    </comp>
     <comp loc="(550,640)" name="tsunami"/>
-    <comp lib="0" loc="(40,180)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="width" val="2"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="R1R0"/>
-      <a name="labelloc" val="north"/>
-      <a name="labelfont" val="SansSerif plain 16"/>
-    </comp>
-    <comp lib="1" loc="(900,150)" name="NOT Gate"/>
-    <comp loc="(1150,450)" name="mode"/>
-    <comp lib="6" loc="(186,793)" name="Text">
-      <a name="text" val="UNIQUE DISASTER"/>
-      <a name="font" val="Yu Gothic Light bold 16"/>
-    </comp>
-    <comp loc="(550,370)" name="flood"/>
-    <comp lib="6" loc="(64,793)" name="Text">
-      <a name="text" val="0"/>
-      <a name="font" val="Yu Gothic Light bold 16"/>
-    </comp>
-    <comp lib="5" loc="(1210,540)" name="LED">
-      <a name="offcolor" val="#000000"/>
-      <a name="label" val="EARTHQUAKE"/>
-      <a name="labelloc" val="east"/>
-      <a name="labelfont" val="Lucida Fax bold 24"/>
-    </comp>
-    <comp lib="6" loc="(63,828)" name="Text">
-      <a name="text" val="1"/>
-      <a name="font" val="Yu Gothic Light bold 16"/>
-    </comp>
     <comp loc="(1150,640)" name="mode"/>
-    <comp lib="6" loc="(65,750)" name="Text">
-      <a name="text" val="MODE "/>
-      <a name="font" val="Segoe UI Variable bold 20"/>
+    <comp lib="5" loc="(1090,180)" name="LED">
+      <a name="color" val="#ff0018"/>
+      <a name="label" val="DANGER"/>
+      <a name="labelloc" val="east"/>
+      <a name="labelfont" val="SansSerif bolditalic 20"/>
+      <a name="labelcolor" val="#bd0f00"/>
     </comp>
-    <comp lib="2" loc="(820,220)" name="Priority Encoder">
-      <a name="select" val="2"/>
-    </comp>
-    <comp lib="6" loc="(367,851)" name="Text">
-      <a name="text" val="10"/>
-      <a name="font" val="Yu Gothic Light bold 16"/>
-    </comp>
+    <comp loc="(1150,450)" name="mode"/>
     <comp loc="(550,450)" name="cyclone"/>
-    <comp lib="6" loc="(369,751)" name="Text">
-      <a name="text" val="INPUT"/>
-      <a name="font" val="Segoe UI Variable bold 20"/>
-    </comp>
-    <comp lib="0" loc="(670,170)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="MODE"/>
-      <a name="labelloc" val="north"/>
-      <a name="labelfont" val="SansSerif bold 24"/>
-    </comp>
-    <comp lib="6" loc="(176,752)" name="Text">
-      <a name="text" val="TYPE"/>
-      <a name="font" val="Segoe UI Variable bold 20"/>
+    <comp loc="(550,540)" name="earthquake"/>
+    <comp lib="1" loc="(900,150)" name="NOT Gate"/>
+    <comp lib="6" loc="(369,788)" name="Text">
+      <a name="text" val="00"/>
+      <a name="font" val="Yu Gothic Light bold 16"/>
     </comp>
     <comp lib="0" loc="(150,180)" name="Pin">
       <a name="facing" val="south"/>
@@ -263,6 +237,91 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="S1S0"/>
       <a name="labelloc" val="north"/>
       <a name="labelfont" val="SansSerif plain 16"/>
+    </comp>
+    <comp lib="6" loc="(63,828)" name="Text">
+      <a name="text" val="1"/>
+      <a name="font" val="Yu Gothic Light bold 16"/>
+    </comp>
+    <comp loc="(550,370)" name="flood"/>
+    <comp lib="6" loc="(500,820)" name="Text">
+      <a name="text" val="Medium"/>
+      <a name="font" val="Yu Gothic Light bold 16"/>
+    </comp>
+    <comp lib="0" loc="(40,180)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="width" val="2"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="R1R0"/>
+      <a name="labelloc" val="north"/>
+      <a name="labelfont" val="SansSerif plain 16"/>
+    </comp>
+    <comp lib="6" loc="(369,751)" name="Text">
+      <a name="text" val="INPUT"/>
+      <a name="font" val="Segoe UI Variable bold 20"/>
+    </comp>
+    <comp lib="6" loc="(368,885)" name="Text">
+      <a name="text" val="11"/>
+      <a name="font" val="Yu Gothic Light bold 16"/>
+    </comp>
+    <comp lib="6" loc="(508,335)" name="Text">
+      <a name="text" val="Flood Condition"/>
+      <a name="font" val="Yu Gothic UI Semibold plain 20"/>
+    </comp>
+    <comp lib="6" loc="(807,273)" name="Text">
+      <a name="text" val="Priority Arrangement"/>
+      <a name="font" val="SansSerif bolditalic 16"/>
+    </comp>
+    <comp lib="6" loc="(270,129)" name="Text">
+      <a name="text" val="Wind"/>
+      <a name="font" val="Yu Gothic UI Semibold plain 20"/>
+    </comp>
+    <comp lib="6" loc="(499,754)" name="Text">
+      <a name="text" val="IMPACT"/>
+      <a name="font" val="Segoe UI Variable bold 20"/>
+    </comp>
+    <comp lib="6" loc="(181,830)" name="Text">
+      <a name="text" val="MULTI DISASTER"/>
+      <a name="font" val="Yu Gothic Light bold 16"/>
+    </comp>
+    <comp lib="0" loc="(390,180)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="width" val="2"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="L1L0"/>
+      <a name="labelloc" val="north"/>
+      <a name="labelfont" val="SansSerif plain 16"/>
+    </comp>
+    <comp lib="6" loc="(508,611)" name="Text">
+      <a name="text" val="Tsunami Condition"/>
+      <a name="font" val="Yu Gothic UI Semibold plain 20"/>
+    </comp>
+    <comp lib="6" loc="(1082,227)" name="Text">
+      <a name="text" val="One Hot Disaster"/>
+      <a name="font" val="SansSerif bolditalic 16"/>
+    </comp>
+    <comp loc="(1150,370)" name="mode"/>
+    <comp lib="5" loc="(1210,370)" name="LED">
+      <a name="label" val="FLOOD"/>
+      <a name="labelloc" val="east"/>
+      <a name="labelfont" val="Lucida Fax bold 24"/>
+    </comp>
+    <comp lib="6" loc="(369,819)" name="Text">
+      <a name="text" val="01"/>
+      <a name="font" val="Yu Gothic Light bold 16"/>
+    </comp>
+    <comp lib="5" loc="(1210,450)" name="LED">
+      <a name="label" val="CYCLONE"/>
+      <a name="labelloc" val="east"/>
+      <a name="labelfont" val="Lucida Fax bold 24"/>
+    </comp>
+    <comp lib="5" loc="(1210,640)" name="LED">
+      <a name="label" val="TSUNAMI"/>
+      <a name="labelloc" val="east"/>
+      <a name="labelfont" val="Lucida Fax bold 24"/>
+    </comp>
+    <comp lib="6" loc="(65,750)" name="Text">
+      <a name="text" val="MODE "/>
+      <a name="font" val="Segoe UI Variable bold 20"/>
     </comp>
     <comp lib="6" loc="(504,511)" name="Text">
       <a name="text" val="Earthquake Condition"/>
@@ -276,75 +335,33 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="labelloc" val="north"/>
       <a name="labelfont" val="SansSerif plain 16"/>
     </comp>
-    <comp lib="6" loc="(369,819)" name="Text">
-      <a name="text" val="01"/>
-      <a name="font" val="Yu Gothic Light bold 16"/>
-    </comp>
-    <comp lib="5" loc="(1090,180)" name="LED">
-      <a name="color" val="#ff0018"/>
-      <a name="label" val="DANGER"/>
-      <a name="labelloc" val="east"/>
-      <a name="labelfont" val="SansSerif bolditalic 20"/>
-      <a name="labelcolor" val="#bd0f00"/>
-    </comp>
-    <comp lib="6" loc="(508,611)" name="Text">
-      <a name="text" val="Tsunami Condition"/>
-      <a name="font" val="Yu Gothic UI Semibold plain 20"/>
-    </comp>
-    <comp lib="6" loc="(500,820)" name="Text">
-      <a name="text" val="Medium"/>
-      <a name="font" val="Yu Gothic Light bold 16"/>
-    </comp>
-    <comp lib="2" loc="(960,220)" name="Decoder">
-      <a name="facing" val="south"/>
-      <a name="select" val="2"/>
-    </comp>
-    <comp lib="6" loc="(1082,227)" name="Text">
-      <a name="text" val="One Hot Disaster"/>
-      <a name="font" val="SansSerif bolditalic 16"/>
-    </comp>
-    <comp lib="6" loc="(152,130)" name="Text">
-      <a name="text" val="Seismic"/>
-      <a name="font" val="Yu Gothic UI Semibold plain 20"/>
-    </comp>
-    <comp lib="6" loc="(508,335)" name="Text">
-      <a name="text" val="Flood Condition"/>
-      <a name="font" val="Yu Gothic UI Semibold plain 20"/>
+    <comp lib="6" loc="(722,76)" name="Text">
+      <a name="text" val="DISASTER WARNING DEVICE (S1-T19)"/>
+      <a name="font" val="Berlin Sans FB plain 28"/>
     </comp>
     <comp lib="6" loc="(42,129)" name="Text">
       <a name="text" val="Rain"/>
       <a name="font" val="Yu Gothic UI Semibold plain 20"/>
     </comp>
-    <comp lib="6" loc="(51,114)" name="Text"/>
-    <comp loc="(1150,370)" name="mode"/>
-    <comp lib="5" loc="(1210,370)" name="LED">
-      <a name="label" val="FLOOD"/>
+    <comp lib="6" loc="(1127,334)" name="Text">
+      <a name="text" val="Mode Response"/>
+      <a name="font" val="SansSerif bolditalic 16"/>
+    </comp>
+    <comp lib="0" loc="(670,170)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="MODE"/>
+      <a name="labelloc" val="north"/>
+      <a name="labelfont" val="SansSerif bold 24"/>
+    </comp>
+    <comp lib="5" loc="(1210,540)" name="LED">
+      <a name="offcolor" val="#000000"/>
+      <a name="label" val="EARTHQUAKE"/>
       <a name="labelloc" val="east"/>
       <a name="labelfont" val="Lucida Fax bold 24"/>
     </comp>
-    <comp lib="6" loc="(500,885)" name="Text">
-      <a name="text" val="Very High"/>
-      <a name="font" val="Yu Gothic Light bold 16"/>
-    </comp>
-    <comp lib="6" loc="(502,787)" name="Text">
-      <a name="text" val="Low/None"/>
-      <a name="font" val="Yu Gothic Light bold 16"/>
-    </comp>
-    <comp lib="6" loc="(505,422)" name="Text">
-      <a name="text" val="Cyclone Condition"/>
-      <a name="font" val="Yu Gothic UI Semibold plain 20"/>
-    </comp>
-    <comp lib="6" loc="(388,130)" name="Text">
-      <a name="text" val="Sea Level"/>
-      <a name="font" val="Yu Gothic UI Semibold plain 20"/>
-    </comp>
-    <comp lib="6" loc="(181,830)" name="Text">
-      <a name="text" val="MULTI DISASTER"/>
-      <a name="font" val="Yu Gothic Light bold 16"/>
-    </comp>
-    <comp lib="6" loc="(368,885)" name="Text">
-      <a name="text" val="11"/>
-      <a name="font" val="Yu Gothic Light bold 16"/>
+    <comp lib="2" loc="(820,220)" name="Priority Encoder">
+      <a name="select" val="2"/>
     </comp>
     <comp lib="5" loc="(1090,150)" name="LED">
       <a name="color" val="#00f038"/>
@@ -354,27 +371,14 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="labelfont" val="SansSerif bolditalic 20"/>
       <a name="labelcolor" val="#13b306"/>
     </comp>
-    <comp lib="6" loc="(369,788)" name="Text">
-      <a name="text" val="00"/>
+    <comp lib="6" loc="(51,114)" name="Text"/>
+    <comp lib="6" loc="(367,851)" name="Text">
+      <a name="text" val="10"/>
       <a name="font" val="Yu Gothic Light bold 16"/>
     </comp>
-    <comp lib="5" loc="(1210,450)" name="LED">
-      <a name="label" val="CYCLONE"/>
-      <a name="labelloc" val="east"/>
-      <a name="labelfont" val="Lucida Fax bold 24"/>
-    </comp>
-    <comp lib="6" loc="(268,832)" name="Text"/>
-    <comp lib="1" loc="(710,310)" name="NOT Gate">
-      <a name="facing" val="south"/>
-    </comp>
-    <comp loc="(1150,540)" name="mode"/>
-    <comp lib="0" loc="(390,180)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="width" val="2"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="L1L0"/>
-      <a name="labelloc" val="north"/>
-      <a name="labelfont" val="SansSerif plain 16"/>
+    <comp lib="6" loc="(176,752)" name="Text">
+      <a name="text" val="TYPE"/>
+      <a name="font" val="Segoe UI Variable bold 20"/>
     </comp>
   </circuit>
   <circuit name="flood">
@@ -419,76 +423,76 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(370,180)" to="(370,230)"/>
     <wire from="(170,180)" to="(370,180)"/>
     <wire from="(790,260)" to="(870,260)"/>
-    <comp lib="1" loc="(650,300)" name="OR Gate">
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="1" loc="(540,350)" name="OR Gate">
-      <a name="inputs" val="2"/>
-    </comp>
     <comp lib="1" loc="(790,260)" name="OR Gate">
       <a name="inputs" val="2"/>
     </comp>
-    <comp lib="1" loc="(540,280)" name="OR Gate">
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="0" loc="(170,230)" name="Pin">
-      <a name="width" val="2"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="3" loc="(440,290)" name="Comparator">
+    <comp lib="3" loc="(440,240)" name="Comparator">
       <a name="width" val="2"/>
     </comp>
     <comp lib="3" loc="(440,190)" name="Comparator">
       <a name="width" val="2"/>
     </comp>
-    <comp lib="0" loc="(340,200)" name="Constant">
+    <comp lib="1" loc="(540,280)" name="OR Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="1" loc="(720,280)" name="AND Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="3" loc="(440,290)" name="Comparator">
+      <a name="width" val="2"/>
+    </comp>
+    <comp lib="1" loc="(540,200)" name="OR Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="0" loc="(170,180)" name="Pin">
+      <a name="width" val="2"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="6" loc="(439,133)" name="Text">
+      <a name="text" val="Flood Condition"/>
+      <a name="font" val="Yu Gothic Light plain 24"/>
+    </comp>
+    <comp lib="0" loc="(170,230)" name="Pin">
+      <a name="width" val="2"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(340,300)" name="Constant">
       <a name="width" val="2"/>
       <a name="value" val="0x2"/>
+    </comp>
+    <comp lib="0" loc="(170,330)" name="Pin">
+      <a name="width" val="2"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(340,350)" name="Constant">
+      <a name="width" val="2"/>
+      <a name="value" val="0x2"/>
+    </comp>
+    <comp lib="1" loc="(650,300)" name="OR Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="0" loc="(170,280)" name="Pin">
+      <a name="width" val="2"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="1" loc="(540,350)" name="OR Gate">
+      <a name="inputs" val="2"/>
     </comp>
     <comp lib="0" loc="(870,260)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="0" loc="(340,350)" name="Constant">
-      <a name="width" val="2"/>
-      <a name="value" val="0x2"/>
-    </comp>
-    <comp lib="6" loc="(439,133)" name="Text">
-      <a name="text" val="Flood Condition"/>
-      <a name="font" val="Yu Gothic Light plain 24"/>
-    </comp>
-    <comp lib="1" loc="(540,200)" name="OR Gate">
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="0" loc="(340,300)" name="Constant">
-      <a name="width" val="2"/>
-      <a name="value" val="0x2"/>
-    </comp>
-    <comp lib="3" loc="(440,340)" name="Comparator">
-      <a name="width" val="2"/>
-    </comp>
-    <comp lib="1" loc="(720,280)" name="AND Gate">
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="0" loc="(170,330)" name="Pin">
-      <a name="width" val="2"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="0" loc="(170,280)" name="Pin">
-      <a name="width" val="2"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="0" loc="(170,180)" name="Pin">
-      <a name="width" val="2"/>
-      <a name="tristate" val="false"/>
-    </comp>
     <comp lib="0" loc="(340,250)" name="Constant">
       <a name="width" val="2"/>
       <a name="value" val="0x3"/>
     </comp>
-    <comp lib="3" loc="(440,240)" name="Comparator">
+    <comp lib="3" loc="(440,340)" name="Comparator">
       <a name="width" val="2"/>
+    </comp>
+    <comp lib="0" loc="(340,200)" name="Constant">
+      <a name="width" val="2"/>
+      <a name="value" val="0x2"/>
     </comp>
   </circuit>
   <circuit name="cyclone">
@@ -535,8 +539,29 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(520,250)" to="(520,440)"/>
     <wire from="(130,310)" to="(330,310)"/>
     <wire from="(770,300)" to="(850,300)"/>
-    <comp lib="1" loc="(670,250)" name="AND Gate">
+    <comp lib="3" loc="(400,200)" name="Comparator">
+      <a name="width" val="2"/>
+    </comp>
+    <comp lib="1" loc="(600,230)" name="OR Gate">
       <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="3" loc="(400,430)" name="Comparator">
+      <a name="width" val="2"/>
+    </comp>
+    <comp lib="1" loc="(500,440)" name="OR Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="0" loc="(300,330)" name="Constant">
+      <a name="width" val="2"/>
+      <a name="value" val="0x2"/>
+    </comp>
+    <comp lib="0" loc="(130,310)" name="Pin">
+      <a name="width" val="2"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(130,260)" name="Pin">
+      <a name="width" val="2"/>
+      <a name="tristate" val="false"/>
     </comp>
     <comp lib="1" loc="(770,300)" name="OR Gate">
       <a name="inputs" val="2"/>
@@ -546,27 +571,36 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="output" val="true"/>
       <a name="labelloc" val="east"/>
     </comp>
+    <comp lib="0" loc="(300,380)" name="Constant">
+      <a name="width" val="2"/>
+      <a name="value" val="0x3"/>
+    </comp>
+    <comp lib="3" loc="(400,370)" name="Comparator">
+      <a name="width" val="2"/>
+    </comp>
+    <comp lib="3" loc="(400,320)" name="Comparator">
+      <a name="width" val="2"/>
+    </comp>
     <comp lib="6" loc="(449,139)" name="Text">
       <a name="text" val="Cyclone Condition"/>
       <a name="font" val="Yu Gothic Light plain 24"/>
     </comp>
-    <comp lib="1" loc="(500,210)" name="OR Gate">
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="1" loc="(500,440)" name="OR Gate">
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="0" loc="(300,330)" name="Constant">
+    <comp lib="0" loc="(300,440)" name="Constant">
       <a name="width" val="2"/>
       <a name="value" val="0x2"/>
     </comp>
-    <comp lib="0" loc="(130,260)" name="Pin">
+    <comp lib="0" loc="(130,420)" name="Pin">
       <a name="width" val="2"/>
       <a name="tristate" val="false"/>
     </comp>
-    <comp lib="0" loc="(300,380)" name="Constant">
-      <a name="width" val="2"/>
-      <a name="value" val="0x3"/>
+    <comp lib="1" loc="(670,250)" name="AND Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="1" loc="(500,210)" name="OR Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="1" loc="(500,330)" name="OR Gate">
+      <a name="inputs" val="2"/>
     </comp>
     <comp lib="0" loc="(130,190)" name="Pin">
       <a name="width" val="2"/>
@@ -576,211 +610,98 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="width" val="2"/>
       <a name="value" val="0x2"/>
     </comp>
-    <comp lib="0" loc="(300,440)" name="Constant">
-      <a name="width" val="2"/>
-      <a name="value" val="0x2"/>
-    </comp>
-    <comp lib="3" loc="(400,370)" name="Comparator">
-      <a name="width" val="2"/>
-    </comp>
-    <comp lib="0" loc="(130,310)" name="Pin">
-      <a name="width" val="2"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="3" loc="(400,320)" name="Comparator">
-      <a name="width" val="2"/>
-    </comp>
-    <comp lib="1" loc="(500,330)" name="OR Gate">
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="1" loc="(600,230)" name="OR Gate">
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="3" loc="(400,200)" name="Comparator">
-      <a name="width" val="2"/>
-    </comp>
-    <comp lib="3" loc="(400,430)" name="Comparator">
-      <a name="width" val="2"/>
-    </comp>
-    <comp lib="0" loc="(130,420)" name="Pin">
-      <a name="width" val="2"/>
-      <a name="tristate" val="false"/>
-    </comp>
   </circuit>
   <circuit name="earthquake">
     <a name="circuit" val="earthquake"/>
     <a name="clabel" val=""/>
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 12"/>
-    <wire from="(380,360)" to="(440,360)"/>
-    <wire from="(380,310)" to="(440,310)"/>
-    <wire from="(410,340)" to="(440,340)"/>
-    <wire from="(410,290)" to="(440,290)"/>
-    <wire from="(500,290)" to="(530,290)"/>
-    <wire from="(480,310)" to="(500,310)"/>
-    <wire from="(580,310)" to="(620,310)"/>
-    <wire from="(500,290)" to="(500,310)"/>
-    <wire from="(480,350)" to="(620,350)"/>
-    <wire from="(410,290)" to="(410,340)"/>
-    <wire from="(520,300)" to="(520,330)"/>
-    <wire from="(670,330)" to="(750,330)"/>
-    <wire from="(210,290)" to="(410,290)"/>
-    <wire from="(520,330)" to="(530,330)"/>
-    <wire from="(480,300)" to="(520,300)"/>
-    <comp lib="3" loc="(480,350)" name="Comparator">
+    <wire from="(560,300)" to="(740,300)"/>
+    <wire from="(440,290)" to="(440,320)"/>
+    <wire from="(420,280)" to="(510,280)"/>
+    <wire from="(310,300)" to="(400,300)"/>
+    <wire from="(420,290)" to="(440,290)"/>
+    <wire from="(440,320)" to="(510,320)"/>
+    <comp lib="0" loc="(310,370)" name="Pin">
       <a name="width" val="2"/>
+      <a name="tristate" val="false"/>
     </comp>
-    <comp lib="6" loc="(470,177)" name="Text">
+    <comp lib="1" loc="(560,300)" name="OR Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="6" loc="(500,182)" name="Text">
       <a name="text" val="Earthquake Condition"/>
       <a name="font" val="Yu Gothic Light plain 24"/>
     </comp>
-    <comp lib="0" loc="(750,330)" name="Pin">
+    <comp lib="0" loc="(740,300)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="0" loc="(210,290)" name="Pin">
+    <comp lib="0" loc="(310,230)" name="Pin">
       <a name="width" val="2"/>
       <a name="tristate" val="false"/>
     </comp>
-    <comp lib="0" loc="(210,440)" name="Pin">
+    <comp lib="0" loc="(310,300)" name="Pin">
       <a name="width" val="2"/>
       <a name="tristate" val="false"/>
     </comp>
-    <comp lib="0" loc="(210,390)" name="Pin">
+    <comp lib="0" loc="(310,440)" name="Pin">
       <a name="width" val="2"/>
       <a name="tristate" val="false"/>
     </comp>
-    <comp lib="1" loc="(670,330)" name="OR Gate">
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="3" loc="(480,300)" name="Comparator">
-      <a name="width" val="2"/>
-    </comp>
-    <comp lib="0" loc="(380,360)" name="Constant">
-      <a name="width" val="2"/>
-      <a name="value" val="0x3"/>
-    </comp>
-    <comp lib="0" loc="(210,230)" name="Pin">
-      <a name="width" val="2"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="0" loc="(380,310)" name="Constant">
-      <a name="width" val="2"/>
-      <a name="value" val="0x2"/>
-    </comp>
-    <comp lib="1" loc="(580,310)" name="OR Gate">
-      <a name="inputs" val="2"/>
-    </comp>
+    <comp lib="0" loc="(400,300)" name="Splitter"/>
   </circuit>
   <circuit name="tsunami">
     <a name="circuit" val="tsunami"/>
     <a name="clabel" val=""/>
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 12"/>
-    <wire from="(300,310)" to="(360,310)"/>
-    <wire from="(300,470)" to="(360,470)"/>
-    <wire from="(300,360)" to="(360,360)"/>
-    <wire from="(300,520)" to="(360,520)"/>
-    <wire from="(600,330)" to="(650,330)"/>
-    <wire from="(500,310)" to="(550,310)"/>
-    <wire from="(590,490)" to="(650,490)"/>
-    <wire from="(650,400)" to="(650,490)"/>
-    <wire from="(420,290)" to="(420,310)"/>
-    <wire from="(420,450)" to="(420,470)"/>
-    <wire from="(650,330)" to="(650,360)"/>
-    <wire from="(440,300)" to="(440,330)"/>
-    <wire from="(440,460)" to="(440,490)"/>
-    <wire from="(720,380)" to="(960,380)"/>
-    <wire from="(400,300)" to="(440,300)"/>
-    <wire from="(400,460)" to="(440,460)"/>
-    <wire from="(500,470)" to="(540,470)"/>
-    <wire from="(670,360)" to="(670,400)"/>
-    <wire from="(420,290)" to="(450,290)"/>
-    <wire from="(420,450)" to="(450,450)"/>
-    <wire from="(650,360)" to="(670,360)"/>
-    <wire from="(650,400)" to="(670,400)"/>
-    <wire from="(330,290)" to="(360,290)"/>
-    <wire from="(330,450)" to="(360,450)"/>
-    <wire from="(330,340)" to="(360,340)"/>
-    <wire from="(330,500)" to="(360,500)"/>
-    <wire from="(400,310)" to="(420,310)"/>
-    <wire from="(400,470)" to="(420,470)"/>
-    <wire from="(400,350)" to="(550,350)"/>
-    <wire from="(440,330)" to="(450,330)"/>
-    <wire from="(440,490)" to="(450,490)"/>
-    <wire from="(400,510)" to="(540,510)"/>
-    <wire from="(330,290)" to="(330,340)"/>
-    <wire from="(330,450)" to="(330,500)"/>
-    <wire from="(130,290)" to="(330,290)"/>
-    <wire from="(130,450)" to="(330,450)"/>
-    <comp lib="0" loc="(130,290)" name="Pin">
+    <wire from="(420,310)" to="(480,310)"/>
+    <wire from="(540,290)" to="(540,360)"/>
+    <wire from="(420,280)" to="(420,310)"/>
+    <wire from="(290,290)" to="(380,290)"/>
+    <wire from="(290,470)" to="(380,470)"/>
+    <wire from="(400,280)" to="(420,280)"/>
+    <wire from="(540,360)" to="(570,360)"/>
+    <wire from="(540,400)" to="(570,400)"/>
+    <wire from="(620,380)" to="(710,380)"/>
+    <wire from="(400,460)" to="(540,460)"/>
+    <wire from="(540,400)" to="(540,460)"/>
+    <wire from="(400,270)" to="(480,270)"/>
+    <wire from="(530,290)" to="(540,290)"/>
+    <comp lib="1" loc="(620,380)" name="OR Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="0" loc="(380,290)" name="Splitter"/>
+    <comp lib="0" loc="(380,470)" name="Splitter"/>
+    <comp lib="0" loc="(290,390)" name="Pin">
       <a name="width" val="2"/>
       <a name="tristate" val="false"/>
     </comp>
-    <comp lib="3" loc="(400,350)" name="Comparator">
-      <a name="width" val="2"/>
-    </comp>
-    <comp lib="1" loc="(720,380)" name="AND Gate">
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="0" loc="(300,520)" name="Constant">
-      <a name="width" val="2"/>
-      <a name="value" val="0x3"/>
-    </comp>
-    <comp lib="1" loc="(500,310)" name="OR Gate">
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="3" loc="(400,300)" name="Comparator">
-      <a name="width" val="2"/>
-    </comp>
-    <comp lib="0" loc="(130,380)" name="Pin">
+    <comp lib="0" loc="(290,290)" name="Pin">
       <a name="width" val="2"/>
       <a name="tristate" val="false"/>
     </comp>
-    <comp lib="1" loc="(600,330)" name="OR Gate">
-      <a name="inputs" val="2"/>
+    <comp lib="6" loc="(452,157)" name="Text">
+      <a name="text" val="Tsunami Condition"/>
+      <a name="font" val="Yu Gothic Light plain 24"/>
     </comp>
-    <comp lib="3" loc="(400,460)" name="Comparator">
-      <a name="width" val="2"/>
-    </comp>
-    <comp lib="0" loc="(130,210)" name="Pin">
+    <comp lib="0" loc="(290,470)" name="Pin">
       <a name="width" val="2"/>
       <a name="tristate" val="false"/>
     </comp>
-    <comp lib="0" loc="(300,360)" name="Constant">
-      <a name="width" val="2"/>
-      <a name="value" val="0x3"/>
-    </comp>
-    <comp lib="1" loc="(590,490)" name="OR Gate">
+    <comp lib="1" loc="(530,290)" name="AND Gate">
       <a name="inputs" val="2"/>
     </comp>
-    <comp lib="1" loc="(500,470)" name="OR Gate">
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="0" loc="(300,470)" name="Constant">
-      <a name="width" val="2"/>
-      <a name="value" val="0x2"/>
-    </comp>
-    <comp lib="0" loc="(130,450)" name="Pin">
-      <a name="width" val="2"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="3" loc="(400,510)" name="Comparator">
-      <a name="width" val="2"/>
-    </comp>
-    <comp lib="0" loc="(960,380)" name="Pin">
+    <comp lib="0" loc="(710,380)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="6" loc="(457,173)" name="Text">
-      <a name="text" val="Tsunami Condition"/>
-      <a name="font" val="Yu Gothic Light plain 24"/>
-    </comp>
-    <comp lib="0" loc="(300,310)" name="Constant">
+    <comp lib="0" loc="(290,220)" name="Pin">
       <a name="width" val="2"/>
-      <a name="value" val="0x2"/>
+      <a name="tristate" val="false"/>
     </comp>
   </circuit>
   <circuit name="mode">
@@ -799,12 +720,13 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(450,310)" to="(470,310)"/>
     <wire from="(520,290)" to="(580,290)"/>
     <wire from="(450,310)" to="(450,320)"/>
-    <comp lib="0" loc="(580,290)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="labelloc" val="east"/>
+    <comp lib="1" loc="(520,290)" name="OR Gate">
+      <a name="inputs" val="2"/>
     </comp>
     <comp lib="0" loc="(310,300)" name="Pin">
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(310,230)" name="Pin">
       <a name="tristate" val="false"/>
     </comp>
     <comp lib="1" loc="(420,320)" name="AND Gate">
@@ -816,18 +738,17 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(310,270)" name="Pin">
       <a name="tristate" val="false"/>
     </comp>
-    <comp lib="1" loc="(520,290)" name="OR Gate">
+    <comp lib="1" loc="(420,250)" name="AND Gate">
       <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="0" loc="(310,230)" name="Pin">
-      <a name="tristate" val="false"/>
     </comp>
     <comp lib="6" loc="(390,154)" name="Text">
       <a name="text" val="Mode Response"/>
       <a name="font" val="Yu Gothic Light plain 24"/>
     </comp>
-    <comp lib="1" loc="(420,250)" name="AND Gate">
-      <a name="inputs" val="2"/>
+    <comp lib="0" loc="(580,290)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
     </comp>
   </circuit>
 </project>
