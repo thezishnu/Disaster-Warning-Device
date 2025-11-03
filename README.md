@@ -48,64 +48,101 @@ A lightweight digital system that detects Flood, Cyclone, Earthquake, and Tsunam
 </details>
 
 <!-- Third Section -->
-## Working
+# Working
 <details>
   <summary>Detail</summary>
+The Disaster Warning Device operates by analysing environmental conditions using simple 2-bit digital inputs. These inputs represent intensity levels of four environmental parameters — rainfall, wind speed, seismic activity, and sea level. Each 2-bit pair indicates the level:
 
-  The **Disaster Warning Device** operates by analysing environmental conditions using simple 2-bit digital inputs. These inputs represent intensity levels of four environmental parameters — rainfall, wind speed, seismic activity, and sea level. Each 2-bit pair indicates the level:  
-  `00` = Low, `01` = Medium, `10` = High, `11` = Very High.
+`00` = Low, `01` = Medium, `10` = High, `11` = Very High.
 
-  **Working Steps:**
+---
 
-  1. **Input Stage:**  
-     The system accepts **8 input bits** grouped as 2-bit pairs for each parameter:  
-     - Rainfall → `r1 r0`  
-     - Wind → `w1 w0`  
-     - Seismic Activity → `s1 s0`  
-     - Sea Level → `l1 l0`  
+## **Working Steps**
 
-     These pairs act like simple digital sensor readings describing environmental intensity.
+### 1. Input Stage
 
-  2. **Condition Evaluation:**  
-     Each disaster is identified by a specific logical expression built from basic gates (AND, OR):  
-     - **Flood:** `r1 & (w1 | l1 | r0)` — high rainfall together with strong wind, high sea level, or continuous rain.  
-     - **Cyclone:** `w1 & (w0 | l1 | r1)` — strong wind combined with either high sea level or heavy rainfall.  
-     - **Earthquake:** `s1 | s0` — any non-zero seismic reading signals earthquake activity.  
-     - **Tsunami:** `s1 & l1` — high seismic activity together with high sea level.
+The system accepts **8 input bits** grouped as 2-bit pairs for each parameter:
 
-  3. **Detection Stage:**  
-     Each condition block outputs a binary signal: `1` if that disaster condition is met, otherwise `0`.  
-     These four signals are the raw detection outputs for Flood, Cyclone, Earthquake, and Tsunami.
+- **Rainfall →** `r1 r0`  
+- **Wind →** `w1 w0`  
+- **Seismic Activity →** `s1 s0`  
+- **Sea Level →** `l1 l0`  
 
-  4. **Priority Encoding (Updated Order):**  
-     The detection signals feed a **priority encoder** that assigns a 2-bit code according to disaster importance. **Tsunami has the highest priority** and Flood the lowest. The mapping is:  
-     - Tsunami → `11` (Highest priority)  
-     - Earthquake → `10`  
-     - Cyclone → `01`  
-     - Flood → `00` (Lowest priority)  
+These pairs act like simple digital sensor readings describing environmental intensity.
 
-     This means when multiple disasters are active, the encoder outputs the code of the highest-priority disaster (Tsunami first, Flood last).
+---
 
-  5. **Decoding and Display:**  
-     The 2-bit encoder output goes to a **decoder** that produces a one-hot signal. The one-hot output drives the corresponding LED so a single LED lights up (in unique mode) indicating the prioritized disaster.
+### 2. Condition Evaluation
 
-  6. **Mode Selection:**  
-     The device has a **mode input** that controls how outputs are shown:  
-     - **Mode = 0 (Unique Disaster Mode):** Only the highest-priority disaster LED (from the encoder/decoder) lights.  
-     - **Mode = 1 (Multi-Disaster Mode):** All LEDs corresponding to the active detection signals light simultaneously (no priority suppression).
+Each disaster is identified by a specific logical expression built from basic gates (AND, OR):
 
-  7. **Final Output:**  
-     The LED panel provides a clear visual warning: one LED for the prioritized disaster in unique mode, or multiple LEDs when several disasters are detected in multi mode. This makes it easy to identify and test disaster conditions quickly.
+- **Flood:** `r1 & (w1 | l1 | r0)` — high rainfall along with strong wind, high sea level, or continuous rain.  
+- **Cyclone:** `w1 & (w0 | l1 | r1)` — strong wind combined with either high sea level or heavy rainfall.  
+- **Earthquake:** `s1 | s0` — any non-zero seismic reading signals earthquake activity.  
+- **Tsunami:** `(s1 & s0) | l1` — very high seismic activity or high sea level triggers a tsunami warning.
 
-  **Note:**  
-  - Priority order is chosen so the most critical—Tsunami—is shown first if it co-occurs with other conditions.  
-  - The logic expressions are intentionally simple to allow implementation using basic gates and comparators, making the design hardware-friendly and suitable for learning labs.  
-  - The earthquake condition uses `s1 | s0` to detect any non-zero seismic reading (i.e., medium or higher), as requested.  
-  - Mode selection gives flexibility: use unique mode for a single clear alert, or multi mode for full situational awareness.
+---
+
+### 3. Detection Stage
+
+Each condition block outputs a binary signal: `1` if that disaster condition is met, otherwise `0`.
+
+These four signals are the raw detection outputs for **Flood**, **Cyclone**, **Earthquake**, and **Tsunami**.
+
+---
+
+### 4. Priority Encoding (Updated Order)
+
+The detection signals feed a **priority encoder** that assigns a 2-bit code according to disaster importance.  
+**Tsunami has the highest priority** and **Flood the lowest**. The mapping is:
+
+| Disaster   | Code | Priority |
+|-------------|------|-----------|
+| Tsunami     | `11` | Highest |
+| Earthquake  | `10` | 2nd |
+| Cyclone     | `01` | 3rd |
+| Flood       | `00` | Lowest |
+
+When multiple disasters are active, the encoder outputs the code of the **highest-priority disaster** (Tsunami first, Flood last).
+
+---
+
+### 5. Decoding and Display
+
+The 2-bit encoder output goes to a **decoder** that produces a one-hot signal.  
+The one-hot output drives the corresponding **LED**, so a single LED lights up (in *unique mode*) indicating the prioritized disaster.
+
+---
+
+### 6. Mode Selection
+
+The device includes a **mode input** that controls how outputs are displayed:
+
+- **Mode = 0 (Unique Disaster Mode):** Only the highest-priority disaster LED (from the encoder/decoder) lights.  
+- **Mode = 1 (Multi-Disaster Mode):** All LEDs corresponding to active disaster conditions light simultaneously (no priority suppression).
+
+---
+
+### 7. Final Output
+
+The LED panel provides a clear visual warning:
+
+- In **unique mode**, one LED lights up for the prioritized disaster.  
+- In **multi mode**, all detected disasters are shown at once.
+
+This design makes it easy to identify and test disaster conditions quickly and clearly.
+
+---
+
+## **Note**
+
+- Priority order ensures the most critical — **Tsunami** — is shown first when multiple conditions occur.  
+- Logic equations are intentionally simple, using only basic gates and comparators for hardware-friendly implementation.  
+- The **Earthquake** condition (`s1 | s0`) detects any non-zero seismic activity.  
+- The **mode** feature offers flexibility: single-alert view or full multi-condition awareness.
+
 
 </details>
-
-
 
 <!-- Fourth Section -->
 ## Logisim Circuit Diagram
@@ -133,12 +170,14 @@ module disaster_behavioral(
         flood      = r1 & (w1 | l1 | r0);
         cyclone    = w1 & (w0 | l1 | r1);
         earthquake = s1 | s0;
-        tsunami    = s1 & l1;
-        if      (flood)      code = 2'b00;
-        else if (cyclone)    code = 2'b01;
+        tsunami    = (s1 & s0) | l1;
+
+        if      (tsunami)    code = 2'b11;
         else if (earthquake) code = 2'b10;
-        else if (tsunami)    code = 2'b11;
+        else if (cyclone)    code = 2'b01;
+        else if (flood)      code = 2'b00;
         else                 code = 2'b00;
+
         case (code)
             2'b00: {Df, Dc, De, Dt} = 4'b1000;
             2'b01: {Df, Dc, De, Dt} = 4'b0100;
@@ -146,66 +185,82 @@ module disaster_behavioral(
             2'b11: {Df, Dc, De, Dt} = 4'b0001;
             default: {Df, Dc, De, Dt} = 4'b0000;
         endcase
+
         flood_led      = (~mode & Df) | (mode & flood);
         cyclone_led    = (~mode & Dc) | (mode & cyclone);
         earthquake_led = (~mode & De) | (mode & earthquake);
         tsunami_led    = (~mode & Dt) | (mode & tsunami);
     end
 endmodule
+
 ```
 
 ###  Testbench
 ```verilog
-// ============================
-// tb_disaster.v
-// Testbench that dumps disaster.vcd
-// ============================
 `timescale 1ns/1ps
-module tb_disaster;
-    reg r1, r0, s1, s0, w1, w0, l1, l0, mode;
-    wire flood_led, cyclone_led, earthquake_led, tsunami_led;
+module tb_disaster_all;
+    reg  r1, r0, s1, s0, w1, w0, l1, l0, mode;
+    wire flood_led_g, cyclone_led_g, earthquake_led_g, tsunami_led_g;
+    wire flood_led_d, cyclone_led_d, earthquake_led_d, tsunami_led_d;
+    wire flood_led_b, cyclone_led_b, earthquake_led_b, tsunami_led_b;
 
-    // instantiate the DUT (change module name to test other styles)
-    disaster_behavioral dut (
-        .r1(r1), .r0(r0), .s1(s1), .s0(s0),
-        .w1(w1), .w0(w0), .l1(l1), .l0(l0),
-        .mode(mode),
-        .flood_led(flood_led),
-        .cyclone_led(cyclone_led),
-        .earthquake_led(earthquake_led),
-        .tsunami_led(tsunami_led)
-    );
+    disaster_gate       U_GATE (.r1(r1), .r0(r0), .s1(s1), .s0(s0), .w1(w1), .w0(w0), .l1(l1), .l0(l0), .mode(mode),
+                                .flood_led(flood_led_g), .cyclone_led(cyclone_led_g), .earthquake_led(earthquake_led_g), .tsunami_led(tsunami_led_g));
+    disaster_dataflow   U_DATA (.r1(r1), .r0(r0), .s1(s1), .s0(s0), .w1(w1), .w0(w0), .l1(l1), .l0(l0), .mode(mode),
+                                .flood_led(flood_led_d), .cyclone_led(cyclone_led_d), .earthquake_led(earthquake_led_d), .tsunami_led(tsunami_led_d));
+    disaster_behavioral U_BEH  (.r1(r1), .r0(r0), .s1(s1), .s0(s0), .w1(w1), .w0(w0), .l1(l1), .l0(l0), .mode(mode),
+                                .flood_led(flood_led_b), .cyclone_led(cyclone_led_b), .earthquake_led(earthquake_led_b), .tsunami_led(tsunami_led_b));
 
     initial begin
         $dumpfile("disaster.vcd");
-        $dumpvars(0, tb_disaster);
-
-        $display("time mode r1r0 w1w0 s1s0 l1l0 | F C E T");
-
-        // Initial
-        mode = 0;
-        {r1,r0,s1,s0,w1,w0,l1,l0} = 8'b00000000; #5;
-
-        // Flood
-        {r1,r0,s1,s0,w1,w0,l1,l0} = 8'b10_00_10_00; mode=0; #5;
-
-        // Cyclone
-        {r1,r0,s1,s0,w1,w0,l1,l0} = 8'b01_00_10_01; mode=0; #5;
-
-        // Earthquake
-        {r1,r0,s1,s0,w1,w0,l1,l0} = 8'b00_01_00_00; mode=0; #5;
-
-        // Tsunami
-        {r1,r0,s1,s0,w1,w0,l1,l0} = 8'b00_00_10_10; mode=0; #5;
-
-        // Multi-disaster
-        mode = 1;
-        {r1,r0,s1,s0,w1,w0,l1,l0} = 8'b11_11_11_11; #5;
-
-        #10 $finish;
+        $dumpvars(0, tb_disaster_all);
     end
 
+    integer i, m, sno, curr_active, max_active;
+    reg [7:0] max_active_vector;
+    reg [8*256:1] outstr;
+
+    initial begin
+        sno = 0;
+        max_active = 0;
+        max_active_vector = 8'hFF;
+        $display("Sno | Mode | R1R0 | S1S0 | W1W0 | L1L0 | Output (Flood, Cyclone, Earthquake, Tsunami)");
+        $display("----+------+-------+-------+-------+-------+--------------------------------------------------------------");
+        for (m = 0; m <= 1; m = m + 1) begin
+            mode = m;
+            for (i = 0; i < 256; i = i + 1) begin
+                {r1,r0,s1,s0,w1,w0,l1,l0} = i[7:0];
+                #1;
+                sno = sno + 1;
+                outstr = "";
+                if (mode == 0) begin
+                    if (flood_led_g)      outstr = "flood";
+                    else if (cyclone_led_g) outstr = "cyclone";
+                    else if (earthquake_led_g) outstr = "earthquake";
+                    else if (tsunami_led_g) outstr = "tsunami";
+                    else outstr = "none";
+                end else begin
+                    if (flood_led_g)      $sformat(outstr, "%s%s", outstr, (outstr=="" ? "flood" : ", flood"));
+                    if (cyclone_led_g)    $sformat(outstr, "%s%s", outstr, (outstr=="" ? "cyclone" : ", cyclone"));
+                    if (earthquake_led_g) $sformat(outstr, "%s%s", outstr, (outstr=="" ? "earthquake" : ", earthquake"));
+                    if (tsunami_led_g)    $sformat(outstr, "%s%s", outstr, (outstr=="" ? "tsunami" : ", tsunami"));
+                    if (outstr == "") outstr = "none";
+                end
+                curr_active = flood_led_g + cyclone_led_g + earthquake_led_g + tsunami_led_g;
+                if (curr_active > max_active) begin
+                    max_active = curr_active;
+                    max_active_vector = i[7:0];
+                end
+                $display("%4d |  %b    |  %b%b   |  %b%b   |  %b%b   |  %b%b   | %-60s",
+                         sno, mode, r1, r0, s1, s0, w1, w0, l1, l0, outstr);
+            end
+        end
+        #5;
+    
+        $finish;
+    end
 endmodule
+
 ````
 </details>
 
