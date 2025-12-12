@@ -1,6 +1,6 @@
 # Disaster Warning Device
 
-A lightweight digital system that detects Flood, Cyclone, Earthquake, and Tsunami from 8 bit Binary Input, then reports either a single prioritized disaster or all simultaneous Natural disasters based on a selectable mode.
+A digital logic–based warning system that identifies Flood, Cyclone, Earthquake, and Tsunami hazards using decimal environmental inputs. It evaluates threshold-based conditions and reports the disaster hazards based on selected mode by the User.
 
 <!-- First Section -->
 ## Team Details
@@ -21,23 +21,27 @@ A lightweight digital system that detects Flood, Cyclone, Earthquake, and Tsunam
 
 </details>
 
-<!-- Second Section -->
 ## Abstract
 <details>
   <summary>Detail</summary>
   
   **Core Background:**  
-  Natural disasters such as floods, cyclones, earthquakes, and tsunamis continue to cause widespread devastation, loss of life, and infrastructure damage. Rapid detection and early warning systems play a crucial role in minimizing these effects. However, most conventional systems rely on complex sensors and microcontroller-based setups, which can be expensive and less accessible for introductory learning environments. This project aims to design a simplified, purely digital logic-based disaster detection and warning device that uses combinational and sequential circuit principles to provide a reliable and low-cost prototype for educational and demonstrative purposes.  
+  Natural disasters such as floods, cyclones, earthquakes, and tsunamis create significant threats to communities and infrastructure. Early warning systems help reduce impact and improve response efforts. This project applies digital logic techniques to classify potential hazards using threshold-based environmental indicators. By converting real-world measurements into binary levels, the system identifies the most probable disaster event.  
 
   **Project Working:**  
-  The proposed model uses four environmental parameters — Rainfall, Seismic Activity, Wind Speed, and Sea Level — each represented as a 2-bit binary input, summing to an 8-bit total input. Each 2-bit combination represents a specific level: Low (`00`), Medium (`01`), High (`10`), or Very High (`11`). Using comparators and a combination of AND, OR, and XOR gates, the system evaluates logic expressions corresponding to each type of disaster.
-  Each condition output activates a disaster indicator. A **priority encoder** assigns binary codes (00–11) based on disaster severity, and a **decoder** converts the code into a one-hot output. The **mode selector** determines whether the system displays only the highest-priority disaster (unique mode) or all concurrent disasters (multi-disaster mode).  
+  The device receives four environmental inputs—Rainfall, Seismic activity, Wind speed, and Sea Level—each encoded into 2-bit levels ranging from Low to Very High.  
+  • Logical circuits assess Flood, Cyclone, Earthquake, and Tsunami conditions  
+  • A priority encoder selects the highest-priority disaster when multiple occur  
+  • Mode control supports Unique-Disaster and Multi-Disaster interpretation  
+  • Final decoding activates one LED corresponding to the detected hazard  
 
   **Applications & Educational Value:**  
-  The system uses LEDs as output indicators, visually representing active disaster conditions. It provides a straightforward, low-cost hardware model ideal for laboratory demonstrations and foundational digital system design learning. The project highlights practical use cases of comparators, encoders, multiplexers, and sequential logic in developing real-world alert systems while fostering a strong understanding of logical design and hardware realization concepts.
+  • LEDs act as clear indicators for disaster conditions  
+  • Compact digital design suitable for early warning prototypes  
+  • Can be integrated into basic monitoring modules for hazard classification  
+  • Illustrates the use of encoders, comparators, and decision logic in detection systems  
 
 </details>
-
 
 ## Functional Block Diagram
 <details>
@@ -47,101 +51,107 @@ A lightweight digital system that detects Flood, Cyclone, Earthquake, and Tsunam
 
 </details>
 
-<!-- Third Section -->
+<!-- Second Section -->
 ## Working
 <details>
   <summary>Detail</summary>
-The Disaster Warning Device operates by analysing environmental conditions using simple 2-bit digital inputs. These inputs represent intensity levels of four environmental parameters — rainfall, wind speed, seismic activity, and sea level. Each 2-bit pair indicates the level:
-
-`00` = Low, `01` = Medium, `10` = High, `11` = Very High.
-
----
-### **Flowchart**
-![Flow_Chart](Snapshots/flowchart_bg.drawio.png)
-
-### **Working Steps**
-
-### 1. Input Stage
-
-The system accepts **8 input bits** grouped as 2-bit pairs for each parameter:
-
-- **Rainfall →** `r1 r0`  
-- **Wind →** `w1 w0`  
-- **Seismic Activity →** `s1 s0`  
-- **Sea Level →** `l1 l0`  
-
-These pairs act like simple digital sensor readings describing environmental intensity.
+  
+### **1. Flowchart**
+![Flow_Chart](Snapshots/flowchart.drawio.png)
 
 ---
 
-### 2. Condition Evaluation
+### **2. Working Steps**
+The system accepts four decimal environmental inputs—rainfall, seismic acceleration, wind speed, and sea-level rise. Each value is mapped to a corresponding 2-bit intensity level based on predefined thresholds.  
+**Threshold Levels:**  
+`00` (Low), `01` (Medium), `10` (High), `11` (Very High)
 
-Each disaster is identified by a specific logical expression built from basic gates (AND, OR):
+---
+#### **2.1 Input Stage**
 
-- **Flood:** `r1 & (w1 | l1 | r0)` — high rainfall along with strong wind, high sea level, or continuous rain.  
-- **Cyclone:** `w1 & (w0 | l1 | r1)` — strong wind combined with either high sea level or heavy rainfall.  
-- **Earthquake:** `s1 | s0` — any non-zero seismic reading signals earthquake activity.  
-- **Tsunami:** `(s1 & s0) | l1` — very high seismic activity or high sea level triggers a tsunami warning.
+The system accepts four decimal environmental inputs—rainfall, seismic acceleration, wind speed, and sea-level rise. Each value is mapped to a corresponding 2-bit intensity level based on predefined thresholds.
+
+**Threshold Levels:**  
+`00` (Low), `01` (Medium), `10` (High), `11` (Very High)
+
+| **Rainfall (mm/hr)** | **Seismic Activity (m/s²) x 10**   | **Wind Speed (kmph)** <br>  | **Sea Level Rise (cm)** | **Output** <br> `x1 x0` |
+|----------------------------------|-------------------------------------------|------------------------------------|----------------------------------------|--------------------------|
+| 0–2                              | 0–0.1                                     | 0–15                               | 0–5                                    | 00                       |
+| 3–10                             | 0.2–0.5                                   | 16–30                              | 6–20                                   | 01                       |
+| 11–30                            | 0.6–1.5                                   | 31–60                              | 21–50                                  | 10                       |
+| ≥ 31                             | ≥ 1.6                                     | ≥ 61                               | ≥ 51                                   | 11                       |
+
 
 ---
 
-### 3. Detection Stage
+#### **2.2 Condition Evaluation**
 
-Each condition block outputs a binary signal: `1` if that disaster condition is met, otherwise `0`.
+**Input Mapping**
+| Parameter | Input Bits <br> (`x1 x0`) |
+|-----------|------------------------|
+| Rainfall | `r1 r0` |
+| Wind Speed | `w1 w0` |
+| Seismic Activity | `s1 s0` |
+| Sea Level Rise | `l1 l0` |
 
-These four signals are the raw detection outputs for **Flood**, **Cyclone**, **Earthquake**, and **Tsunami**.
+**Disaster Logic Conditions**
+- **Flood**: `r1 & (w1 | l1 | r0)`  
+- **Cyclone**: `w1 & (w0 | l1 | r1)`  
+- **Earthquake**: `s1 | s0`  
+- **Tsunami**: `(s1 & s0) | l1`  
+
+Each expression is implemented using logic gates to determine whether the respective disaster condition is active.
 
 ---
 
-### 4. Priority Encoding (Updated Order)
+#### **2.3 Detection Stage**
+Each disaster condition outputs a binary signal: `1` if the condition is met and `0` otherwise.  
+These four outputs represent the raw detection results for **Flood**, **Cyclone**, **Earthquake**, and **Tsunami**.
 
-The detection signals feed a **priority encoder** that assigns a 2-bit code according to disaster importance.  
-**Tsunami has the highest priority** and **Flood the lowest**. The mapping is:
+---
+
+#### **2.4 Priority Encoding**
+The four detection outputs are sent to a priority encoder, which assigns a 2-bit code based on disaster severity.
 
 | Disaster   | Code | Priority |
-|-------------|------|-----------|
-| Tsunami     | `11` | Highest |
-| Earthquake  | `10` | 2nd |
-| Cyclone     | `01` | 3rd |
-| Flood       | `00` | Lowest |
+|------------|------|----------|
+| Tsunami    | `11` | Highest |
+| Earthquake | `10` | 2nd |
+| Cyclone    | `01` | 3rd |
+| Flood      | `00` | Lowest |
 
-When multiple disasters are active, the encoder outputs the code of the **highest-priority disaster** (Tsunami first, Flood last).
-
----
-
-### 5. Decoding and Display
-
-The 2-bit encoder output goes to a **decoder** that produces a one-hot signal.  
-The one-hot output drives the corresponding **LED**, so a single LED lights up (in *unique mode*) indicating the prioritized disaster.
+If multiple disasters occur simultaneously, the encoder outputs the code of the **highest-priority** disaster.
 
 ---
 
-### 6. Mode Selection
-
-The device includes a **mode input** that controls how outputs are displayed:
-
-- **Mode = 0 (Unique Disaster Mode):** Only the highest-priority disaster LED (from the encoder/decoder) lights.  
-- **Mode = 1 (Multi-Disaster Mode):** All LEDs corresponding to active disaster conditions light simultaneously (no priority suppression).
+#### **2.5 Decoding & Output Display**
+The encoder’s 2-bit output is decoded into a **one-hot signal**.  
+The corresponding LED is activated, indicating the selected (prioritized) disaster.
 
 ---
 
-### 7. Final Output
+#### **2.6 Mode Selection**
+The device operates in two modes:
 
-The LED panel provides a clear visual warning:
-
-- In **unique mode**, one LED lights up for the prioritized disaster.  
-- In **multi mode**, all detected disasters are shown at once.
-
-This design makes it easy to identify and test disaster conditions quickly and clearly.
+- **Mode = 0 → Unique Disaster Mode:** Only the highest-priority disaster LED is displayed.  
+- **Mode = 1 → Multi-Disaster Mode:** All LEDs corresponding to active conditions are displayed.
 
 ---
 
-## **Note**
+#### **2.7 Final Output**
+The LED panel provides the final visual indication of system status:
 
-- Priority order ensures the most critical — **Tsunami** — is shown first when multiple conditions occur.  
-- Logic equations are intentionally simple, using only basic gates and comparators for hardware-friendly implementation.  
-- The **Earthquake** condition (`s1 | s0`) detects any non-zero seismic activity.  
-- The **mode** feature offers flexibility: single-alert view or full multi-condition awareness.
+- **Unique mode:** One LED lights up to show the prioritized disaster.
+- **Multi mode:** All LEDs corresponding to active disaster conditions light simultaneously.
+- **SAFE LED:** Turns ON when no disaster conditions are detected.
+- **DANGER LED:** Turns ON when any one or more disaster conditions are active.
+
+### **3. Note**
+
+- The seismic input used in this system represents **(seismic value × 10)** to match the defined threshold ranges and ensure consistent digital classification.
+- Priority ordering ensures that the most critical disaster (Tsunami) overrides all others when multiple conditions occur simultaneously.
+- Logic expressions are implemented using basic gates for reliable hardware execution.
+- The mode selector provides flexibility, supporting both single-disaster (unique) and multi-disaster display behavior.
 
 
 </details>
@@ -151,140 +161,30 @@ This design makes it easy to identify and test disaster conditions quickly and c
 <details>
   <summary>Detail</summary>
   
-  ![Circuit](Logisim/Logisim_circuit.png)
-</details>
-
-<!-- Fifth Section -->
-## Verilog Code
-<details>
-  <summary>Detail</summary>
-
-###  Behavoiral
-```verilog
-module disaster_behavioral(
-    input  r1, r0, s1, s0, w1, w0, l1, l0, mode,
-    output reg flood_led, cyclone_led, earthquake_led, tsunami_led
-);
-    reg flood, cyclone, earthquake, tsunami;
-    reg [1:0] code;
-    reg Df, Dc, De, Dt;
-    always @(*) begin
-        flood      = r1 & (w1 | l1 | r0);
-        cyclone    = w1 & (w0 | l1 | r1);
-        earthquake = s1 | s0;
-        tsunami    = (s1 & s0) | l1;
-
-        if      (tsunami)    code = 2'b11;
-        else if (earthquake) code = 2'b10;
-        else if (cyclone)    code = 2'b01;
-        else if (flood)      code = 2'b00;
-        else                 code = 2'b00;
-
-        case (code)
-            2'b00: {Df, Dc, De, Dt} = 4'b1000;
-            2'b01: {Df, Dc, De, Dt} = 4'b0100;
-            2'b10: {Df, Dc, De, Dt} = 4'b0010;
-            2'b11: {Df, Dc, De, Dt} = 4'b0001;
-            default: {Df, Dc, De, Dt} = 4'b0000;
-        endcase
-
-        flood_led      = (~mode & Df) | (mode & flood);
-        cyclone_led    = (~mode & Dc) | (mode & cyclone);
-        earthquake_led = (~mode & De) | (mode & earthquake);
-        tsunami_led    = (~mode & Dt) | (mode & tsunami);
-    end
-endmodule
-
-```
-
-###  Testbench
-```verilog
-`timescale 1ns/1ps
-module tb_disaster_all;
-    reg  r1, r0, s1, s0, w1, w0, l1, l0, mode;
-    wire flood_led_g, cyclone_led_g, earthquake_led_g, tsunami_led_g;
-    wire flood_led_d, cyclone_led_d, earthquake_led_d, tsunami_led_d;
-    wire flood_led_b, cyclone_led_b, earthquake_led_b, tsunami_led_b;
-
-    disaster_gate       U_GATE (.r1(r1), .r0(r0), .s1(s1), .s0(s0), .w1(w1), .w0(w0), .l1(l1), .l0(l0), .mode(mode),
-                                .flood_led(flood_led_g), .cyclone_led(cyclone_led_g), .earthquake_led(earthquake_led_g), .tsunami_led(tsunami_led_g));
-    disaster_dataflow   U_DATA (.r1(r1), .r0(r0), .s1(s1), .s0(s0), .w1(w1), .w0(w0), .l1(l1), .l0(l0), .mode(mode),
-                                .flood_led(flood_led_d), .cyclone_led(cyclone_led_d), .earthquake_led(earthquake_led_d), .tsunami_led(tsunami_led_d));
-    disaster_behavioral U_BEH  (.r1(r1), .r0(r0), .s1(s1), .s0(s0), .w1(w1), .w0(w0), .l1(l1), .l0(l0), .mode(mode),
-                                .flood_led(flood_led_b), .cyclone_led(cyclone_led_b), .earthquake_led(earthquake_led_b), .tsunami_led(tsunami_led_b));
-
-    initial begin
-        $dumpfile("disaster.vcd");
-        $dumpvars(0, tb_disaster_all);
-    end
-
-    integer i, m, sno, curr_active, max_active;
-    reg [7:0] max_active_vector;
-    reg [8*256:1] outstr;
-
-    initial begin
-        sno = 0;
-        max_active = 0;
-        max_active_vector = 8'hFF;
-        $display("Sno | Mode | R1R0 | S1S0 | W1W0 | L1L0 | Output (Flood, Cyclone, Earthquake, Tsunami)");
-        $display("----+------+-------+-------+-------+-------+--------------------------------------------------------------");
-        for (m = 0; m <= 1; m = m + 1) begin
-            mode = m;
-            for (i = 0; i < 256; i = i + 1) begin
-                {r1,r0,s1,s0,w1,w0,l1,l0} = i[7:0];
-                #1;
-                sno = sno + 1;
-                outstr = "";
-                if (mode == 0) begin
-                    if (flood_led_g)      outstr = "flood";
-                    else if (cyclone_led_g) outstr = "cyclone";
-                    else if (earthquake_led_g) outstr = "earthquake";
-                    else if (tsunami_led_g) outstr = "tsunami";
-                    else outstr = "none";
-                end else begin
-                    if (flood_led_g)      $sformat(outstr, "%s%s", outstr, (outstr=="" ? "flood" : ", flood"));
-                    if (cyclone_led_g)    $sformat(outstr, "%s%s", outstr, (outstr=="" ? "cyclone" : ", cyclone"));
-                    if (earthquake_led_g) $sformat(outstr, "%s%s", outstr, (outstr=="" ? "earthquake" : ", earthquake"));
-                    if (tsunami_led_g)    $sformat(outstr, "%s%s", outstr, (outstr=="" ? "tsunami" : ", tsunami"));
-                    if (outstr == "") outstr = "none";
-                end
-                curr_active = flood_led_g + cyclone_led_g + earthquake_led_g + tsunami_led_g;
-                if (curr_active > max_active) begin
-                    max_active = curr_active;
-                    max_active_vector = i[7:0];
-                end
-                $display("%4d |  %b    |  %b%b   |  %b%b   |  %b%b   |  %b%b   | %-60s",
-                         sno, mode, r1, r0, s1, s0, w1, w0, l1, l0, outstr);
-            end
-        end
-        #5;
-    
-        $finish;
-    end
-endmodule
-
-````
+  ![Circuit](Logisim/logisim_circuit.png)
 </details>
 
 ## References
+
 <details>
   <summary>Detail</summary>
 
-> Mitheu, F. K. *A Model for Impact-Based Flood Early Warning and Anticipatory Actions in Uganda*. University of Reading, 2023. Accessed: 2025-10-30.  
-> [(https://centaur.reading.ac.uk/112918/1/MITHEU_Thesis.pdf)](https://centaur.reading.ac.uk/112918/1/MITHEU_Thesis.pdf)  
+> Digital Electronics by Morris Mano (5th Edition).  
+> (https://digitalsystemdesign.in/wp-content/uploads/2018/05/digital_design-__morris_mano-fifth_edition.pdf)
 
-> U.S. Fire Administration (FEMA). *Fire Service and Disaster Response Integration: Emergency Preparedness Framework*, 2024. Accessed: 2025-10-22.  
-> [(https://apps.usfa.fema.gov/pdf/efop/efo34486.pdf)](https://apps.usfa.fema.gov/pdf/efop/efo34486.pdf)  
+> Encoders and Decoders in Digital Logic – GeeksforGeeks.  
+> (https://www.geeksforgeeks.org/digital-logic/encoders-and-decoders-in-digital-logic/)
 
-> United States Patent. *US4153881A – Early warning and control system for flood, earthquake, and other natural disasters*, 2024. Accessed: 2025-10-29.  
-> [(https://patents.google.com/patent/US4153881A/en)](https://patents.google.com/patent/US4153881A/en)  
+> Magnitude Comparator in Digital Logic – GeeksforGeeks.  
+> (https://www.geeksforgeeks.org/digital-logic/magnitude-comparator-in-digital-logic/)
 
-> Electronics Tutorials. *Magnitude Comparator in Digital Logic*. Accessed: 2025-11-01.  
-> [(https://www.electronics-tutorials.ws/combination/comb_8.html)](https://www.electronics-tutorials.ws/combination/comb_8.html)  
-
-> GeeksforGeeks. *Encoders and Decoders in Digital Logic*. Accessed: 2025-10-13.  
-> [(https://www.geeksforgeeks.org/digital-logic/encoders-and-decoders-in-digital-logic/)](https://www.geeksforgeeks.org/digital-logic/encoders-and-decoders-in-digital-logic/)  
+> Disaster Parameter Limits:   
+> Flood (IMD): (https://mausam.imd.gov.in/imd_latest/contents/pdf/pubbrochures/Heavy%20Rainfall%20Warning%20Services.pdf)  
+> Cyclone (IMD): (https://rsmcnewdelhi.imd.gov.in/uploads/climatology/hazard.pdf)  
+> Earthquake (Britannica): (https://www.britannica.com/science/earthquake-geology/Earthquake-magnitude)  
+> Tsunami (NIDM).: (https://nidm.gov.in/pdf/safety/flood/link1.pdf)
 
 </details>
+
 
 
