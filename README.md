@@ -13,11 +13,11 @@ A digital logic–based warning system that identifies Flood, Cyclone, Earthquak
 
   > **Team ID:** s1-19  
 
-  > **Member-1:** Poluri Sai Jishnu, 241CS140, saijishnup.241cs140@nitk.edu.in  
+  > **Team Lead:** Poluri Sai Jishnu, 241CS140, saijishnup.241cs140@nitk.edu.in  
 
-  > **Member-2:** Utkoor Venkatesh, 241CS161, utkoorvenkatesh.241cs161@nitk.edu.in  
+  > **Member:** Utkoor Venkatesh, 241CS161, utkoorvenkatesh.241cs161@nitk.edu.in  
 
-  > **Member-3:** Vikash Patel, 241CS163, vikashpatel.241cs163@nitk.edu.in  
+  > **Member:** Vikash Patel, 241CS163, vikashpatel.241cs163@nitk.edu.in  
 
 </details>
 
@@ -25,17 +25,17 @@ A digital logic–based warning system that identifies Flood, Cyclone, Earthquak
 <details>
   <summary>Detail</summary>
   
-  **Core Background:**  
+ #### **Core Background:**  
   Natural disasters such as floods, cyclones, earthquakes, and tsunamis create significant threats to communities and infrastructure. Early warning systems help reduce impact and improve response efforts. This project applies digital logic techniques to classify potential hazards using threshold-based environmental indicators. By converting real-world measurements into binary levels, the system identifies the most probable disaster event.  
 
-  **Project Working:**  
+ #### **Project Working:**  
   The device receives four environmental inputs—Rainfall, Seismic activity, Wind speed, and Sea Level—each encoded into 2-bit levels ranging from Low to Very High.  
   • Logical circuits assess Flood, Cyclone, Earthquake, and Tsunami conditions  
   • A priority encoder selects the highest-priority disaster when multiple occur  
   • Mode control supports Unique-Disaster and Multi-Disaster interpretation  
   • Final decoding activates one LED corresponding to the detected hazard  
 
-  **Applications & Educational Value:**  
+ #### **Applications & Educational Value:**  
   • LEDs act as clear indicators for disaster conditions  
   • Compact digital design suitable for early warning prototypes  
   • Can be integrated into basic monitoring modules for hazard classification  
